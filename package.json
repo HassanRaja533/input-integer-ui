@@ -24,5 +24,8 @@
   "dependencies": {
     "browserify": "^17.0.1",
     "budo": "^11.8.4"
+  },
+  "devDependencies": {
+    "standardx": "^7.0.0"
   }
 }

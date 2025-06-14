@@ -1,5 +1,5 @@
-const inputInteger =require('..');
+const input_integer =require('..')
 
-const x = inputInteger();
+const x = input_integer()
 
-document.body.innerHTML =`<html>${x}</html>`
+document.body.append(x);
