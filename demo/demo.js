@@ -1,7 +1,11 @@
 const input_integer =require('..')
 
-const input1 = input_integer()
-const input2 = input_integer()
+const opts1 = { min: 1, max: 150 }
+const opts2 = { min: 1872, max: 2022 }
+
+const input1 = input_integer(opts1)
+const input2 = input_integer(opts2)
+
 const title = "My Demo Title"
 const sub_title = "My Demo Title"
 
