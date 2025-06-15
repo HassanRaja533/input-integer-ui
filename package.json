@@ -31,7 +31,7 @@
   "standardx": {
     "ignore": ["bundle.js"],
     "rules": {
-      "camelcase": "off"
+      "camelcase": 0
     }
   }
 }
