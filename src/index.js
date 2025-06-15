@@ -1,27 +1,27 @@
 module.exports = input_integer
 
-const sheet = new CSSStyleSheet
+const sheet = new CSSStyleSheet()
 const theme = get_theme()
 sheet.replaceSync(theme)
 
 function input_integer (opts) {
-    const {min =0 ,max= 1000}=opts
+  const { min = 0, max = 1000 } = opts
   const el = document.createElement('div')
   const shadow = el.attachShadow({ mode: 'closed' })
   const input = document.createElement('input')
-  input.type ='number'
-    input.min = min //opts.min
-    input.max = max //opts.max
-  input.onkeyup =(e) => handle_onkeyup(e,input,min,max)
+  input.type = 'number'
+  input.min = min // opts.min
+  input.max = max // opts.max
+  input.onkeyup = (e) => handle_onkeyup(e, input, min, max)
   input.onmouseleave = (e) => handle_onmouseleave_and_blur(e, input, min)
-    input.onblur = (e) => handle_onmouseleave_and_blur(e, input, min)
+  input.onblur = (e) => handle_onmouseleave_and_blur(e, input, min)
   shadow.append(input)
-  shadow.adoptedStyleSheets =[sheet]
+  shadow.adoptedStyleSheets = [sheet]
   return el
 }
 
-function get_theme(){
-   return`
+function get_theme () {
+  return `
     :host {
         --b: 0, 0%;
         --color-white: var(--b), 100%;
@@ -61,21 +61,19 @@ input::-webkit-inner-spin-button {
     `
 }
 
+function handle_onkeyup (e, input, min, max) {
+  const val = Number(e.target.value)
+  const val_len = val.toString().length // e.target.value.length
+  const min_len = min.toString().length
 
-function handle_onkeyup (e, input,min,max) {
-    const val = Number(e.target.value)
-const val_len = val.toString().length // e.target.value.length
-     const min_len = min.toString().length
-
-    if(val > max){
-        input.value = max
-    }
-    else if(val_len === min_len && val <min){
-        input.value =input.value = '' //1872
-    }
+  if (val > max) {
+    input.value = max
+  } else if (val_len === min_len && val < min) {
+    input.value = input.value = '' // 1872
+  }
 }
 
 function handle_onmouseleave_and_blur (e, input, min) {
-    const val = Number(e.target.value)
-    if (val < min) input.value = ''
+  const val = Number(e.target.value)
+  if (val < min) input.value = ''
 }

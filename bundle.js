@@ -1,18 +1,19 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const input_integer =require('..')
+(function () { function r (e, n, t) { function o (i, f) { if (!n[i]) { if (!e[i]) { const c = typeof require === 'function' && require; if (!f && c) return c(i, !0); if (u) return u(i, !0); const a = new Error("Cannot find module '" + i + "'"); throw a.code = 'MODULE_NOT_FOUND', a } const p = n[i] = { exports: {} }; e[i][0].call(p.exports, function (r) { const n = e[i][1][r]; return o(n || r) }, p, p.exports, r, e, n, t) } return n[i].exports } for (var u = typeof require === 'function' && require, i = 0; i < t.length; i++)o(t[i]); return o } return r })()({
+  1: [function (require, module, exports) {
+    const input_integer = require('..')
 
-const opts1 = { min: 1, max: 150 }
-const opts2 = { min: 1872, max: 2022 }
+    const opts1 = { min: 1, max: 150 }
+    const opts2 = { min: 1872, max: 2022 }
 
-const input1 = input_integer(opts1)
-const input2 = input_integer(opts2)
+    const input1 = input_integer(opts1)
+    const input2 = input_integer(opts2)
 
-const title = "My Demo Title"
-const sub_title = "My Demo Title"
+    const title = 'My Demo Title'
+    const sub_title = 'My Demo Title'
 
-const page = document.createElement('div');
+    const page = document.createElement('div')
 
-page.innerHTML=`
+    page.innerHTML = `
 <h1>${title}</h1>
 <h2>${sub_title}</h2>
 <h3> Enter Your Age</h3>
@@ -20,35 +21,36 @@ page.innerHTML=`
 <h3>Enter Your Year of Birth</h3>
 <y></y>
 `
-page.querySelector('x').replaceWith(input1)
-page.querySelector('y').replaceWith(input2)
+    page.querySelector('x').replaceWith(input1)
+    page.querySelector('y').replaceWith(input2)
 
-document.body.append(page);
-},{"..":2}],2:[function(require,module,exports){
-module.exports = input_integer
+    document.body.append(page)
+  }, { '..': 2 }],
+  2: [function (require, module, exports) {
+    module.exports = input_integer
 
-const sheet = new CSSStyleSheet
-const theme = get_theme()
-sheet.replaceSync(theme)
+    const sheet = new CSSStyleSheet()
+    const theme = get_theme()
+    sheet.replaceSync(theme)
 
-function input_integer (opts) {
-    const {min,max}=opts
-  const el = document.createElement('div')
-  const shadow = el.attachShadow({ mode: 'closed' })
-  const input = document.createElement('input')
-  input.type ='number'
-    input.min = min //opts.min
-    input.max = max //opts.max
-  input.onkeyup =(e) => handle_onkeyup(e,input,min,max)
-  input.onmouseleave = (e) => handle_onmouseleave_and_blur(e, input, min)
-    input.onblur = (e) => handle_onmouseleave_and_blur(e, input, min)
-  shadow.append(input)
-  shadow.adoptedStyleSheets =[sheet]
-  return el
-}
+    function input_integer (opts) {
+      const { min, max } = opts
+      const el = document.createElement('div')
+      const shadow = el.attachShadow({ mode: 'closed' })
+      const input = document.createElement('input')
+      input.type = 'number'
+      input.min = min // opts.min
+      input.max = max // opts.max
+      input.onkeyup = (e) => handle_onkeyup(e, input, min, max)
+      input.onmouseleave = (e) => handle_onmouseleave_and_blur(e, input, min)
+      input.onblur = (e) => handle_onmouseleave_and_blur(e, input, min)
+      shadow.append(input)
+      shadow.adoptedStyleSheets = [sheet]
+      return el
+    }
 
-function get_theme(){
-   return`
+    function get_theme () {
+      return `
     :host {
         --b: 0, 0%;
         --color-white: var(--b), 100%;
@@ -86,24 +88,23 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
         }
     `
-}
+    }
 
+    function handle_onkeyup (e, input, min, max) {
+      const val = Number(e.target.value)
+      const val_len = val.toString().length // e.target.value.length
+      const min_len = min.toString().length
 
-function handle_onkeyup (e, input,min,max) {
-    const val = Number(e.target.value)
-const val_len = val.toString().length // e.target.value.length
-     const min_len = min.toString().length
-
-    if(val > max){
+      if (val > max) {
         input.value = max
+      } else if (val_len === min_len && val < min) {
+        input.value = input.value = '' // 1872
+      }
     }
-    else if(val_len === min_len && val <min){
-        input.value =input.value = '' //1872
-    }
-}
 
-function handle_onmouseleave_and_blur (e, input, min) {
-    const val = Number(e.target.value)
-    if (val < min) input.value = ''
-}
-},{}]},{},[1]);
+    function handle_onmouseleave_and_blur (e, input, min) {
+      const val = Number(e.target.value)
+      if (val < min) input.value = ''
+    }
+  }, {}]
+}, {}, [1])
