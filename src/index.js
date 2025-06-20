@@ -10,10 +10,10 @@ function input_integer(opts, protocol) {
   const name = `input-integr-${id++}`
 
 
-const notify = protocol({ from: name }, listen)
+  const notify = protocol({ from: name }, listen)
 
-function listen (message) {
-  const { type, data } = message
+  function listen (message) {
+    const { type, data } = message
     if (type === 'update') {
       input.value = data
     }
@@ -37,25 +37,25 @@ function listen (message) {
 
   // handlers
 
-function handle_onkeyup (e, input, min, max) {
-   const val = Number(e.target.value)
-   const val_len = val.toString().length // e.target.value.length
-   const min_len = min.toString().length
+  function handle_onkeyup (e, input, min, max) {
+    const val = Number(e.target.value)
+    const val_len = val.toString().length // e.target.value.length
+    const min_len = min.toString().length
 
-   if (val > max) {
+    if (val > max) {
       input.value = max
     } 
-   else if (val_len === min_len && val < min) {
+    else if (val_len === min_len && val < min) {
       input.value = input.value = min // 1872
     }
 
     notify({ from: name, type: 'update', data: val })
-  }
+    }
 
-function handle_onmouseleave_and_blur (e, input, min) {
-  const val = Number(e.target.value)
-  if (val < min) input.value = ''
-  }
+  function handle_onmouseleave_and_blur (e, input, min) {
+    const val = Number(e.target.value)
+    if (val < min) input.value = ''
+    }
 }
 
 function get_theme () {
