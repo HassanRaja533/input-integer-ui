@@ -89,12 +89,12 @@ function input_integer(opts, protocol) {
     }
 
     notify({ from: name, type: 'update', data: val })
-    }
+  }
 
   function handle_onmouseleave_and_blur (e, input, min) {
     const val = Number(e.target.value)
     if (val < min) input.value = ''
-    }
+  }
 }
 
 function get_theme () {
